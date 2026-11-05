@@ -27,4 +27,14 @@ describe("Jeu", () => {
 
     expect(jeu.score()).toBe("Zéro-Quinze");
   });
+
+  it("annonce les points dans l'ordre Zéro, Quinze, Trente, Quarante", () => {
+    const jeu = new Jeu("Alice", "Bob", classementDummy);
+
+    jeu.pointPour("Alice");
+    jeu.pointPour("Alice");
+    jeu.pointPour("Bob");
+
+    expect(jeu.score()).toBe("Trente-Quinze");
+  });
 });
