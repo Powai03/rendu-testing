@@ -50,4 +50,25 @@ describe("Match en un set", () => {
 
     expect(match.score()).toBe("Victoire Alice 4-0");
   });
+
+  it("affiche le score du jeu en cours pendant le match", () => {
+    const match = new Match("Alice", "Bob", classementDummy);
+
+    match.pointPour("Alice");
+
+    expect(match.score()).toBe("Quinze-Zéro");
+  });
+
+  it("annonce la victoire avec le nombre de jeux du vainqueur en premier", () => {
+    const match = new Match("Alice", "Bob", classementDummy);
+
+    for (let i = 0; i < 4; i++) {
+      match.pointPour("Alice");
+    }
+    for (let i = 0; i < 16; i++) {
+      match.pointPour("Bob");
+    }
+
+    expect(match.score()).toBe("Victoire Bob 4-1");
+  });
 });
