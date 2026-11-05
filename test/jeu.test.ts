@@ -19,4 +19,12 @@ describe("Jeu", () => {
 
     expect(jeu.score()).toBe("Quinze-Zéro");
   });
+
+  it("affiche les points du second joueur à droite", () => {
+    const jeu = new Jeu("Alice", "Bob", classementDummy);
+
+    jeu.pointPour("Bob");
+
+    expect(jeu.score()).toBe("Zéro-Quinze");
+  });
 });
