@@ -3,6 +3,7 @@ import { Jeu } from "./jeu";
 
 export class Match {
   private jeuxJoueur1 = 0;
+  private jeuxJoueur2 = 0;
   private jeuEnCours: Jeu;
 
   constructor(
@@ -11,8 +12,12 @@ export class Match {
     private classement: Classement,
   ) {
     this.jeuEnCours = new Jeu(joueur1, joueur2, {
-      enregistrer: () => {
-        this.jeuxJoueur1 = this.jeuxJoueur1 + 1;
+      enregistrer: (vainqueur) => {
+        if (vainqueur === joueur1) {
+          this.jeuxJoueur1 = this.jeuxJoueur1 + 1;
+        } else {
+          this.jeuxJoueur2 = this.jeuxJoueur2 + 1;
+        }
       },
     });
   }
@@ -22,6 +27,6 @@ export class Match {
   }
 
   jeux(): string {
-    return this.jeuxJoueur1 + "-0";
+    return this.jeuxJoueur1 + "-" + this.jeuxJoueur2;
   }
 }
