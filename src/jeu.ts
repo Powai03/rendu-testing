@@ -19,20 +19,20 @@ export class Jeu {
       this.pointsJoueur2 = this.pointsJoueur2 + 1;
     }
     if (this.pointsJoueur1 === PTS_WIN) {
-      this.classement.enregistrer("Alice", "Bob");
+      this.classement.enregistrer(this.joueur1, this.joueur2);
     }
     if (this.pointsJoueur2 === PTS_WIN) {
-      this.classement.enregistrer("Bob", "Alice");
+      this.classement.enregistrer(this.joueur2, this.joueur1);
     }
   }
 
   score(): string {
     const annonces = ["Zéro", "Quinze", "Trente", "Quarante"];
     if (this.pointsJoueur1 === PTS_WIN) {
-      return "Victoire Alice";
+      return "Victoire " + this.joueur1;
     }
     if (this.pointsJoueur2 === PTS_WIN) {
-      return "Victoire Bob";
+      return "Victoire " + this.joueur2;
     }
     if (this.pointsJoueur1 === 3 && this.pointsJoueur2 === 3) {
       return "Égalité";
