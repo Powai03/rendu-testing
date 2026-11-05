@@ -112,4 +112,17 @@ describe("Jeu", () => {
 
     expect(classementSpy.enregistrer).toHaveBeenCalledWith("Bob", "Alice");
   });
+
+  //double spy pour compter combien de fois enregistrer est appelé, un dummy ou un stub peut pas compter les appels
+  it("n'enregistre le résultat qu'une seule fois même si on marque après la fin du match", () => {
+    const classementSpy = { enregistrer: vi.fn() };
+    const jeu = new Jeu("Alice", "Bob", classementSpy);
+
+    for (let i = 0; i < 4; i++) {
+      jeu.pointPour("Alice");
+    }
+    jeu.pointPour("Bob");
+
+    expect(classementSpy.enregistrer).toHaveBeenCalledTimes(1);
+  });
 });
