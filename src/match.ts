@@ -4,6 +4,7 @@ import { Jeu } from "./jeu";
 export class Match {
   private jeuxJoueur1 = 0;
   private jeuxJoueur2 = 0;
+  private compteurJeux: Classement;
   private jeuEnCours: Jeu;
 
   constructor(
@@ -11,7 +12,7 @@ export class Match {
     private joueur2: string,
     private classement: Classement,
   ) {
-    this.jeuEnCours = new Jeu(joueur1, joueur2, {
+    this.compteurJeux = {
       enregistrer: (vainqueur) => {
         if (vainqueur === joueur1) {
           this.jeuxJoueur1 = this.jeuxJoueur1 + 1;
@@ -19,11 +20,15 @@ export class Match {
           this.jeuxJoueur2 = this.jeuxJoueur2 + 1;
         }
       },
-    });
+    };
+    this.jeuEnCours = new Jeu(joueur1, joueur2, this.compteurJeux);
   }
 
   pointPour(joueur: string) {
     this.jeuEnCours.pointPour(joueur);
+    if (this.jeuEnCours.vainqueur()) {
+      this.jeuEnCours = new Jeu(this.joueur1, this.joueur2, this.compteurJeux);
+    }
   }
 
   jeux(): string {
