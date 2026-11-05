@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { Jeu } from "../src/jeu";
 
 
@@ -87,5 +87,17 @@ describe("Jeu", () => {
     }
 
     expect(jeu.score()).toBe("Victoire Bob");
+  });
+
+  //double spy pour verifier apres coup que enregistrer est appelé avec les bons joueurs vu qu'un dummy ou un stub garde pas d'appels
+  it("enregistre le résultat au classement à la fin du match, vainqueur en premier", () => {
+    const classementSpy = { enregistrer: vi.fn() };
+    const jeu = new Jeu("Alice", "Bob", classementSpy);
+
+    for (let i = 0; i < 4; i++) {
+      jeu.pointPour("Alice");
+    }
+
+    expect(classementSpy.enregistrer).toHaveBeenCalledWith("Alice", "Bob");
   });
 });
