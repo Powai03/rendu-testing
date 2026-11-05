@@ -11,4 +11,12 @@ describe("Jeu", () => {
 
     expect(jeu.score()).toBe("Zéro-Zéro");
   });
+
+  it("annonce Quinze quand un joueur marque son premier point", () => {
+    const jeu = new Jeu("Alice", "Bob", classementDummy);
+
+    jeu.pointPour("Alice");
+
+    expect(jeu.score()).toBe("Quinze-Zéro");
+  });
 });
