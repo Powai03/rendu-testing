@@ -20,6 +20,9 @@ export class Jeu {
 
   score(): string {
     const annonces = ["Zéro", "Quinze", "Trente", "Quarante"];
+    if (this.pointsJoueur1 === 3 && this.pointsJoueur2 === 3) {
+      return "Égalité";
+    }
     if (this.pointsJoueur1 === this.pointsJoueur2 && this.pointsJoueur1 > 0) {
       return annonces[this.pointsJoueur1] + "-A";
     }
