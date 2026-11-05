@@ -19,6 +19,12 @@ export class Match {
         } else {
           this.jeuxJoueur2 = this.jeuxJoueur2 + 1;
         }
+        if (this.jeuxJoueur1 === 4) {
+          this.classement.enregistrer(this.joueur1, this.joueur2);
+        }
+        if (this.jeuxJoueur2 === 4) {
+          this.classement.enregistrer(this.joueur2, this.joueur1);
+        }
       },
     };
     this.jeuEnCours = this.nouveauJeu();
