@@ -13,7 +13,7 @@ export class Jeu {
   ) {}
 
   pointPour(joueur: string) {
-    if (this.pointsJoueur1 === PTS_WIN || this.pointsJoueur2 === PTS_WIN) {
+    if (this.vainqueur()) {
       return;
     }
     if (joueur === this.joueur1) {
@@ -21,21 +21,18 @@ export class Jeu {
     } else {
       this.pointsJoueur2 = this.pointsJoueur2 + 1;
     }
-    if (this.pointsJoueur1 === PTS_WIN) {
-      this.classement.enregistrer(this.joueur1, this.joueur2);
-    }
-    if (this.pointsJoueur2 === PTS_WIN) {
-      this.classement.enregistrer(this.joueur2, this.joueur1);
+    const vainqueur = this.vainqueur();
+    if (vainqueur) {
+      const perdant = vainqueur === this.joueur1 ? this.joueur2 : this.joueur1;
+      this.classement.enregistrer(vainqueur, perdant);
     }
   }
 
   score(): string {
     const annonces = ["Zéro", "Quinze", "Trente", "Quarante"];
-    if (this.pointsJoueur1 === PTS_WIN) {
-      return "Victoire " + this.joueur1;
-    }
-    if (this.pointsJoueur2 === PTS_WIN) {
-      return "Victoire " + this.joueur2;
+    const vainqueur = this.vainqueur();
+    if (vainqueur) {
+      return "Victoire " + vainqueur;
     }
     if (this.pointsJoueur1 === 3 && this.pointsJoueur2 === 3) {
       return "Égalité";
@@ -44,5 +41,15 @@ export class Jeu {
       return annonces[this.pointsJoueur1] + "-A";
     }
     return annonces[this.pointsJoueur1] + "-" + annonces[this.pointsJoueur2];
+  }
+
+  vainqueur(): string | undefined {
+    if (this.pointsJoueur1 === PTS_WIN) {
+      return this.joueur1;
+    }
+    if (this.pointsJoueur2 === PTS_WIN) {
+      return this.joueur2;
+    }
+    return undefined;
   }
 }
