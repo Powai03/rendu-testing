@@ -18,6 +18,9 @@ export class Jeu {
     } else {
       this.pointsJoueur2 = this.pointsJoueur2 + 1;
     }
+    if (this.pointsJoueur1 === PTS_WIN) {
+      this.classement.enregistrer("Alice", "Bob");
+    }
   }
 
   score(): string {
