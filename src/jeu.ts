@@ -13,6 +13,9 @@ export class Jeu {
   ) {}
 
   pointPour(joueur: string) {
+    if (this.pointsJoueur1 === PTS_WIN || this.pointsJoueur2 === PTS_WIN) {
+      return;
+    }
     if (joueur === this.joueur1) {
       this.pointsJoueur1 = this.pointsJoueur1 + 1;
     } else {
