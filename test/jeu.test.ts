@@ -68,4 +68,14 @@ describe("Jeu", () => {
 
     expect(jeu.score()).toBe("Égalité");
   });
+
+  it("donne la victoire au joueur qui marque alors qu'il est à Quarante", () => {
+    const jeu = new Jeu("Alice", "Bob", classementDummy);
+
+    for (let i = 0; i < 4; i++) {
+      jeu.pointPour("Alice");
+    }
+
+    expect(jeu.score()).toBe("Victoire Alice");
+  });
 });
