@@ -100,4 +100,16 @@ describe("Jeu", () => {
 
     expect(classementSpy.enregistrer).toHaveBeenCalledWith("Alice", "Bob");
   });
+
+  //double spy aussi pour verifier que enregistrer reçoit bob en premier quand c'est lui qui gagne
+  it("enregistre aussi la victoire du second joueur avec lui en premier", () => {
+    const classementSpy = { enregistrer: vi.fn() };
+    const jeu = new Jeu("Alice", "Bob", classementSpy);
+
+    for (let i = 0; i < 4; i++) {
+      jeu.pointPour("Bob");
+    }
+
+    expect(classementSpy.enregistrer).toHaveBeenCalledWith("Bob", "Alice");
+  });
 });
