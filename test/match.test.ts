@@ -20,4 +20,14 @@ describe("Match en un set", () => {
 
     expect(match.jeux()).toBe("1-0");
   });
+
+  it("compte aussi les jeux gagnés par le second joueur", () => {
+    const match = new Match("Alice", "Bob", classementDummy);
+
+    for (let i = 0; i < 4; i++) {
+      match.pointPour("Bob");
+    }
+
+    expect(match.jeux()).toBe("0-1");
+  });
 });
