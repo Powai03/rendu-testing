@@ -30,4 +30,14 @@ describe("Match en un set", () => {
 
     expect(match.jeux()).toBe("0-1");
   });
+
+  it("enchaîne un nouveau jeu après chaque jeu gagné", () => {
+    const match = new Match("Alice", "Bob", classementDummy);
+
+    for (let i = 0; i < 8; i++) {
+      match.pointPour("Alice");
+    }
+
+    expect(match.jeux()).toBe("2-0");
+  });
 });
