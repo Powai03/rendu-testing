@@ -21,14 +21,18 @@ export class Match {
         }
       },
     };
-    this.jeuEnCours = new Jeu(joueur1, joueur2, this.compteurJeux);
+    this.jeuEnCours = this.nouveauJeu();
   }
 
   pointPour(joueur: string) {
     this.jeuEnCours.pointPour(joueur);
     if (this.jeuEnCours.vainqueur()) {
-      this.jeuEnCours = new Jeu(this.joueur1, this.joueur2, this.compteurJeux);
+      this.jeuEnCours = this.nouveauJeu();
     }
+  }
+
+  private nouveauJeu(): Jeu {
+    return new Jeu(this.joueur1, this.joueur2, this.compteurJeux);
   }
 
   jeux(): string {
