@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { Match } from "../src/match";
 
 describe("Match en un set", () => {
@@ -70,5 +70,18 @@ describe("Match en un set", () => {
     }
 
     expect(match.score()).toBe("Victoire Bob 4-1");
+  });
+
+  //double spy pour verifier que le classement est appelé une seule fois à la fin du match avec le vainqueur en premier
+  it("enregistre le résultat du match une seule fois à la fin, vainqueur en premier", () => {
+    const classementSpy = { enregistrer: vi.fn() };
+    const match = new Match("Alice", "Bob", classementSpy);
+
+    for (let i = 0; i < 16; i++) {
+      match.pointPour("Alice");
+    }
+
+    expect(classementSpy.enregistrer).toHaveBeenCalledTimes(1);
+    expect(classementSpy.enregistrer).toHaveBeenCalledWith("Alice", "Bob");
   });
 });
