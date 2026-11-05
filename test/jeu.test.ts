@@ -57,4 +57,15 @@ describe("Jeu", () => {
 
     expect(jeu.score()).toBe("Trente-A");
   });
+
+  it("annonce Égalité quand les deux joueurs sont à Quarante", () => {
+    const jeu = new Jeu("Alice", "Bob", classementDummy);
+
+    for (let i = 0; i < 3; i++) {
+      jeu.pointPour("Alice");
+      jeu.pointPour("Bob");
+    }
+
+    expect(jeu.score()).toBe("Égalité");
+  });
 });
