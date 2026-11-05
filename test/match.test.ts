@@ -40,4 +40,14 @@ describe("Match en un set", () => {
 
     expect(match.jeux()).toBe("2-0");
   });
+
+  it("donne la victoire au premier joueur qui gagne 4 jeux", () => {
+    const match = new Match("Alice", "Bob", classementDummy);
+
+    for (let i = 0; i < 16; i++) {
+      match.pointPour("Alice");
+    }
+
+    expect(match.score()).toBe("Victoire Alice 4-0");
+  });
 });
