@@ -78,4 +78,14 @@ describe("Jeu", () => {
 
     expect(jeu.score()).toBe("Victoire Alice");
   });
+
+  it("donne aussi la victoire au second joueur", () => {
+    const jeu = new Jeu("Alice", "Bob", classementDummy);
+
+    for (let i = 0; i < 4; i++) {
+      jeu.pointPour("Bob");
+    }
+
+    expect(jeu.score()).toBe("Victoire Bob");
+  });
 });
