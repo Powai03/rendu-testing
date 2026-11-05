@@ -23,6 +23,9 @@ export class Jeu {
     if (this.pointsJoueur1 === 4) {
       return "Victoire Alice";
     }
+    if (this.pointsJoueur2 === 4) {
+      return "Victoire Bob";
+    }
     if (this.pointsJoueur1 === 3 && this.pointsJoueur2 === 3) {
       return "Égalité";
     }
