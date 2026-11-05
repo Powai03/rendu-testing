@@ -37,4 +37,13 @@ describe("Jeu", () => {
 
     expect(jeu.score()).toBe("Trente-Quinze");
   });
+
+  it("annonce A quand les deux joueurs ont le même nombre de points", () => {
+    const jeu = new Jeu("Alice", "Bob", classementDummy);
+
+    jeu.pointPour("Alice");
+    jeu.pointPour("Bob");
+
+    expect(jeu.score()).toBe("Quinze-A");
+  });
 });
