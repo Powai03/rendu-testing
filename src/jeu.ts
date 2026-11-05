@@ -1,5 +1,7 @@
 import type { Classement } from "./classement";
 
+const PTS_WIN = 4;
+
 export class Jeu {
   private pointsJoueur1 = 0;
   private pointsJoueur2 = 0;
@@ -20,10 +22,10 @@ export class Jeu {
 
   score(): string {
     const annonces = ["Zéro", "Quinze", "Trente", "Quarante"];
-    if (this.pointsJoueur1 === 4) {
+    if (this.pointsJoueur1 === PTS_WIN) {
       return "Victoire Alice";
     }
-    if (this.pointsJoueur2 === 4) {
+    if (this.pointsJoueur2 === PTS_WIN) {
       return "Victoire Bob";
     }
     if (this.pointsJoueur1 === 3 && this.pointsJoueur2 === 3) {
