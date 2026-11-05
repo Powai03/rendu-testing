@@ -19,15 +19,7 @@ export class Jeu {
   }
 
   score(): string {
-    if (this.pointsJoueur1 === 2 && this.pointsJoueur2 === 1) {
-      return "Trente-Quinze";
-    }
-    if (this.pointsJoueur1 === 1) {
-      return "Quinze-Zéro";
-    }
-    if (this.pointsJoueur2 === 1) {
-      return "Zéro-Quinze";
-    }
-    return "Zéro-Zéro";
+    const annonces = ["Zéro", "Quinze", "Trente", "Quarante"];
+    return annonces[this.pointsJoueur1] + "-" + annonces[this.pointsJoueur2];
   }
 }
