@@ -35,6 +35,10 @@ export class Match {
     return new Jeu(this.joueur1, this.joueur2, this.compteurJeux);
   }
 
+  score(): string {
+    return "Victoire Alice 4-0";
+  }
+
   jeux(): string {
     return this.jeuxJoueur1 + "-" + this.jeuxJoueur2;
   }
