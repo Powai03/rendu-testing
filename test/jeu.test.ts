@@ -50,10 +50,10 @@ describe("Jeu", () => {
   it("annonce l'égalité avec le score des joueurs suivi de A", () => {
     const jeu = new Jeu("Alice", "Bob", classementDummy);
 
-    jeu.pointPour("Alice");
-    jeu.pointPour("Bob");
-    jeu.pointPour("Alice");
-    jeu.pointPour("Bob");
+    for (let i = 0; i < 2; i++) {
+      jeu.pointPour("Alice");
+      jeu.pointPour("Bob");
+    }
 
     expect(jeu.score()).toBe("Trente-A");
   });
