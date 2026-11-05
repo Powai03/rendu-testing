@@ -36,7 +36,13 @@ export class Match {
   }
 
   score(): string {
-    return "Victoire Alice 4-0";
+    if (this.jeuxJoueur1 === 4) {
+      return "Victoire " + this.joueur1 + " " + this.jeuxJoueur1 + "-" + this.jeuxJoueur2;
+    }
+    if (this.jeuxJoueur2 === 4) {
+      return "Victoire " + this.joueur2 + " " + this.jeuxJoueur2 + "-" + this.jeuxJoueur1;
+    }
+    return this.jeuEnCours.score();
   }
 
   jeux(): string {
